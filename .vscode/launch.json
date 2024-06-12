@@ -1,0 +1,138 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in library 'macros'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=macros"
+                ],
+                "filter": {
+                    "name": "macros",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'macros'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=macros",
+                    "--package=macros"
+                ],
+                "filter": {
+                    "name": "macros",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'macros'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=macros",
+                    "--package=macros"
+                ],
+                "filter": {
+                    "name": "macros",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug example 'test_vec'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--example=test_vec",
+                    "--package=macros"
+                ],
+                "filter": {
+                    "name": "test_vec",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in example 'test_vec'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--example=test_vec",
+                    "--package=macros"
+                ],
+                "filter": {
+                    "name": "test_vec",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug example 'try_test'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--example=try_test",
+                    "--package=macros"
+                ],
+                "filter": {
+                    "name": "try_test",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in example 'try_test'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--example=try_test",
+                    "--package=macros"
+                ],
+                "filter": {
+                    "name": "try_test",
+                    "kind": "example"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
