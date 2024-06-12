@@ -1,21 +1,18 @@
 use std::fmt::format;
 
-use anyhow::{anyhow, Result}
-
-
+use anyhow::{anyhow, Result};
 
 fn main() -> Result<()> {
     let err = f3(f2(f1("测试")?)?);
-    print!("{:?}",err);
+    print!("{:?}", err);
     Ok(())
 }
 
-fn f1 (s: impl AsRef<str>) -> Result<String> {
+fn f1(s: impl AsRef<str>) -> Result<String> {
     Ok(format!("f1:{}", s.as_ref()))
 }
 
-
-fn f2 (s: impl AsRef<str>) -> Result<String>{
+fn f2(s: impl AsRef<str>) -> Result<String> {
     Ok(format!("f2:{}", s.as_ref()))
 }
 
