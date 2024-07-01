@@ -3,8 +3,8 @@ use macros::EnumFrom;
 
 #[derive(Debug, EnumFrom)]
 #[allow(dead_code)]
-enum Direction {
-    Up(DirectionUp),
+enum Direction<T> {
+    Up(DirectionUp<T>),
     Down(i32),
     Left(String),
     Right(f64),
@@ -12,8 +12,8 @@ enum Direction {
 
 #[derive(Debug)]
 #[allow(dead_code)]
-struct DirectionUp {
-    spench: i32,
+struct DirectionUp<T> {
+    spench: T,
 }
 
 // impl From<DirectionUp> for Direction {
@@ -21,24 +21,24 @@ struct DirectionUp {
 //         Direction::UP(value)
 //     }
 // }
-impl DirectionUp {
-    pub fn new() -> Self {
-        Self { spench: 32 }
+impl<T> DirectionUp<T> {
+    pub fn new(t: T) -> Self {
+        Self { spench: t }
     }
 }
 
 #[allow(dead_code)]
-impl Direction {
-    pub fn new() -> Self {
-        Self::Up(DirectionUp::new())
+impl<T> Direction<T> {
+    pub fn new(t: T) -> Self {
+        Self::Up(DirectionUp::new(t))
     }
 }
 
 fn main() -> Result<()> {
-    let up: Direction = DirectionUp::new().into();
-    let down: Direction = 32.into();
-    let left: Direction = "left".to_string().into();
-    let right: Direction = 3.14.into();
+    let up: Direction<i32> = DirectionUp::new(32).into();
+    let down: Direction<i32> = 32.into();
+    let left: Direction<i32> = "left".to_string().into();
+    let right: Direction<i32> = 3.14.into();
     println!(
         "up:{:?},douwn:{:?},left:{:?},right:{:?}",
         up, down, left, right
