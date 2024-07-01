@@ -1,12 +1,11 @@
 use proc_macro2::TokenStream;
 use quote::quote;
+use syn::DeriveInput;
 
-pub(crate) fn enum_from(input: DeriveInput) -> TokenStream {
-    // parse the input token stream as a DeriveInput
-    let input = syn::parse_macro_input!(input as syn::DeriveInput);
-    // println!("{:#?}", input);
+pub(crate) fn process_enum_from(input: DeriveInput) -> TokenStream {
     // get the ident
     let ident = input.ident;
+    // get generics
     let generics = input.generics;
     // get enum variants
     let variants = match input.data {
@@ -22,15 +21,10 @@ pub(crate) fn enum_from(input: DeriveInput) -> TokenStream {
                 if fields.unnamed.len() != 1 {
                     quote! {}
                 } else {
-                    let field = fields.unnamed.first().expect("only surport 1 field");
+                    let field = fields.unnamed.first().expect("should have 1 field");
                     let ty = &field.ty;
-                    // impl From<DirectionUp> for Direction {
-                    //     fn from(value: DirectionUp) -> Self {
-                    //         Direction::UP(value)
-                    //     }
-                    // }
                     quote! {
-                        impl #generics From<#ty> for #ident #generics {
+                        impl #generics  From<#ty> for #ident #generics {
                             fn from(v: #ty) -> Self {
                                 #ident::#var(v)
                             }
@@ -39,8 +33,7 @@ pub(crate) fn enum_from(input: DeriveInput) -> TokenStream {
                 }
             }
 
-            syn::Fields::Unit => quote! {},
-            syn::Fields::Named(_fields) => quote! {},
+            _ => quote! {},
         }
     });
 

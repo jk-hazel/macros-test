@@ -1,7 +1,7 @@
 use anyhow::Result;
-use macros::EnumFrom;
+use macros::EnumFromDarling;
 
-#[derive(Debug, EnumFrom)]
+#[derive(Debug, EnumFromDarling)]
 #[allow(dead_code)]
 enum Direction<T> {
     Up(DirectionUp<T>),
